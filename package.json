@@ -33,7 +33,7 @@
     "prepare:config": "chmod +x bin/* && bin/shared-config.js",
     "prepare:husky": "husky install",
     "pretest": "npm run lint",
-    "test": "echo \"Error: no test specified\""
+    "test": "node --experimental-test-coverage --test"
   },
   "devDependencies": {
     "@mafalda-sfu/eslint-config": "^0.3.0",
