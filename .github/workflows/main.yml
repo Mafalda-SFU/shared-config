@@ -8,24 +8,65 @@ on:
     branches: [ main ]
 
 jobs:
-  publish:
+  tests:
     runs-on: ubuntu-latest
     steps:
+      # Checkout
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '>=20.1.0'
 
-      - run: npm install --no-save --verbose @mafalda-sfu/test-reporter-json
+      # Dependencies
+      - name: Install dependencies
+        run: npm ci --verbose
+      - name: Install test reporters
+        run: |
+          npm install --no-save --verbose \
+            @mafalda-sfu/test-reporter-json node-test-github-reporter
 
-      - run: npm ci --verbose
-      - run: |
+      # Tests
+      - name: Run tests
+        run: |
           npm test -- \
+            --test-reporter spec \
+            --test-reporter-destination stdout \
+            --test-reporter node-test-github-reporter \
+            --test-reporter-destination stderr \
             --test-reporter=@mafalda-sfu/test-reporter-json \
             --test-reporter-destination=coverage.json
-      - run: npm run docs
 
-      - uses: cpina/github-action-push-to-another-repository@v1.5.1
+      # Coverage badge
+      - name: Export total coverage
+        run: |
+          export TOTAL=$( \
+            cat coverage.json | \
+            jq .summary.totals.coveredLinePercent | \
+            jq '.*100|round/100' \
+          )
+          echo "total=$TOTAL" >> $GITHUB_ENV
+          echo "### Total coverage: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
+      - name: Coverage badge
+        uses: Schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          filename: ${{ github.event.repository.name }}.json
+          gistID: 27d772a9a3a8a945b34fd9676de40486
+          label: Coverage
+          maxColorRange: 90
+          message: ${{ env.total }}%
+          minColorRange: 50
+          namedLogo: Jest
+          valColorRange: ${{ env.total }}
+
+  publish-docs:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate docs
+        run: npm run docs
+      - name: Publish docs
+        uses: cpina/github-action-push-to-another-repository@v1.5.1
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
@@ -36,24 +77,31 @@ jobs:
           user-email: bot@mafalda.io
           user-name: Mafalda bot
 
-      - name: "Combine"
+  lint-badge:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      # Lint
+      - name: Run linter
+        run: npm run lint -- --format json > lint.json
+
+      # Bagde
+      - name: Export lint warnings
         run: |
           export TOTAL=$( \
-            cat coverage.json | \
-            jq .summary.totals.coveredLinePercent | \
-            jq '.*100|round/100' \
+            cat lint.json | \
+            jq '[].warningCount | add' \
           )
+          echo "color=$(( TOTAL==0 ? 0 : 60 ))" >> $GITHUB_ENV
           echo "total=$TOTAL" >> $GITHUB_ENV
-          echo "### Total coverage: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
-      - name: Dynamic Badges
+          echo "### Total lint warnings: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
+      - name: Lint badge
         uses: Schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
+          color: hsl(${{ env.color }}, 100%, 40%)
           filename: ${{ github.event.repository.name }}.json
-          gistID: 27d772a9a3a8a945b34fd9676de40486
-          label: Coverage
-          minColorRange: 50
-          message: ${{ env.total }}%
-          maxColorRange: 90
-          namedLogo: Jest
-          valColorRange: ${{ env.total }}
+          gistID: 377761809285c571637ecd886a5cc492
+          label: Lint warnings
+          message: ${{ env.total }}
+          namedLogo: eslint
