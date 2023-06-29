@@ -79,8 +79,9 @@
 .yarn/cache
 .yarn/install-state.gz
 .yarn/unplugged
-/.eslintrc
-/.husky
+/.eslint*
+/.gitignore
+/.husky/
 /.npmignore
 /.vscode/
 bin/

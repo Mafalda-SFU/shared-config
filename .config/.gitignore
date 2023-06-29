@@ -130,7 +130,8 @@ dist
 .pnp.*
 
 # Mafalda SFU shared config
-/.husky
-/.eslintrc
+/.husky/
 /.vscode/
+/.eslint*
+/.gitignore
 /.npmignore
