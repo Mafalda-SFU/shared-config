@@ -40,8 +40,7 @@ jobs:
       - name: Export total coverage
         run: |
           export TOTAL=$( \
-            cat coverage.json | \
-            jq .summary.totals.coveredLinePercent | \
+            jq .summary.totals.coveredLinePercent < coverage.json | \
             jq '.*100|round/100' \
           )
           echo "total=$TOTAL" >> $GITHUB_ENV
@@ -104,16 +103,13 @@ jobs:
 
       # Lint
       - name: Run linter
-        run: npm run lint -- --format json > lint.json
+        run: npm run lint -s -- --format json > lint.json
 
       # Bagde
       - name: Export lint warnings
         run: |
-          export TOTAL=$( \
-            cat lint.json | \
-            jq '[].warningCount | add' \
-          )
-          echo "color=$(( TOTAL==0 ? 0 : 60 ))" >> $GITHUB_ENV
+          export TOTAL=$( jq '[.[].warningCount] | add' < lint.json )
+          echo "color=$(( TOTAL==0 ? 120 : 60 ))" >> $GITHUB_ENV
           echo "total=$TOTAL" >> $GITHUB_ENV
           echo "### Total lint warnings: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
       - name: Lint badge
