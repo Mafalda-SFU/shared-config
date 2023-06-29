@@ -105,7 +105,7 @@ jobs:
 
       # Lint
       - name: Run linter
-        run: npm run lint -s -- --format json > lint.json
+        run: npm run lint:eslint -s -- --format json > lint.json
 
       # Badge
       - name: Export lint warnings
