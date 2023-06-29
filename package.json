@@ -28,7 +28,9 @@
     "docs": "npm-run-all docs:*",
     "docs:madge": "madge . --image madge.svg",
     "docs:readme": "cp README.md madge.svg docs/",
-    "lint": "eslint .",
+    "lint": "npm-run-all lint:*",
+    "lint:cspell": "cspell --dot --gitignore \"**\"",
+    "lint:eslint": "eslint .",
     "madge": "madge . --circular",
     "predocs": "mkdir -p docs/",
     "prepare": "npm-run-all prepare:*",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "@mafalda-sfu/eslint-config": "^0.3.0",
+    "cspell": "^6.31.1",
     "eslint": "^8.43.0",
     "husky": "^8.0.3",
     "jsdoc-to-markdown": "^8.0.0",

@@ -79,6 +79,7 @@
 .yarn/cache
 .yarn/install-state.gz
 .yarn/unplugged
+/.cspell*
 /.eslint*
 /.gitignore
 /.husky/

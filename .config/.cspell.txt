@@ -1,0 +1,8 @@
+Combarro
+Jesús
+jsdoc
+Leganés
+Mafalda
+npmignore
+piranna
+predocs

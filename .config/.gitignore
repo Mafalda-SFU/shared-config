@@ -132,6 +132,7 @@ dist
 # Mafalda SFU shared config
 /.husky/
 /.vscode/
+/.cspell*
 /.eslint*
 /.gitignore
 /.npmignore

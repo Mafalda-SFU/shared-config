@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": ["Mafalda SFU"],
+  "dictionaryDefinitions": [
+    {
+      "addWords": true,
+      "name": "Mafalda SFU",
+      "path": ".cspell.txt"
+    }
+  ],
+  "ignorePaths": [".git/", "node_modules/", "*.[jt]s?(x)", "*.svg"],
+  "version": "0.2",
+  "words": [
+    "graphviz",
+    "cpina",
+    "cyclomatic",
+    "Schneegans"
+  ]
+}
