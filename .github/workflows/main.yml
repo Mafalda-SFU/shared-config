@@ -111,7 +111,7 @@ jobs:
           export TOTAL=$( jq '[.[].warningCount] | add' < lint.json )
           echo "color=$(( TOTAL==0 ? 120 : 60 ))" >> $GITHUB_ENV
           echo "total=$TOTAL" >> $GITHUB_ENV
-          echo "### Total lint warnings: ${TOTAL}%" >> $GITHUB_STEP_SUMMARY
+          echo "### Total lint warnings: ${TOTAL}" >> $GITHUB_STEP_SUMMARY
       - name: Lint badge
         uses: Schneegans/dynamic-badges-action@v1.6.0
         with:
