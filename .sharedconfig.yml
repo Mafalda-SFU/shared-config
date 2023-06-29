@@ -3,6 +3,7 @@ dependencies:
   - cspell: ^6.31.1
   - eslint: ^8.41.0
   - husky: ^8.0.3
+  - jscpd: ^3.5.9
   - jsdoc-to-markdown: ^8.0.0
   - madge: ^6.1.0
 mergeRules:
@@ -15,6 +16,7 @@ scripts:
   lint: npm-run-all lint:*
   lint:cspell: cspell
   lint:eslint: eslint .
+  lint:jscpd: jscpd --ignore coverage,node_modules .
   predocs: mkdir -p docs/
   prepare:husky: husky install
   pretest: npm-run-all pretest:*

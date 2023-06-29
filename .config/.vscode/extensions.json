@@ -9,6 +9,7 @@
     "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
     "herrmannplatz.npm-dependency-links",
     "christian-kohler.npm-intellisense",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "ctf0.duplicated-code-new"
   ]
 }
