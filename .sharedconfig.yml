@@ -3,14 +3,19 @@ dependencies:
   - eslint: ^8.41.0
   - husky: ^8.0.3
   - jsdoc-to-markdown: ^8.0.0
+  - madge: ^6.1.0
 mergeRules:
   .gitignore:
   .npmignore:
 scripts:
   docs: npm-run-all docs:*
-  docs:readme: cp README.md docs/
+  docs:madge: madge . --image madge.svg
+  docs:readme: cp README.md madge.svg docs/
   lint: eslint .
+  madge: madge . --circular
   predocs: mkdir -p docs/
   prepare:husky: husky install
-  pretest: npm run lint
+  pretest: npm-run-all pretest:*
+  pretest:lint: npm run lint
+  pretest:madge: npm run madge
 type: module
