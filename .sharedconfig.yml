@@ -15,10 +15,9 @@ scripts:
   lint: npm-run-all lint:*
   lint:cspell: cspell --dot --gitignore "**"
   lint:eslint: eslint .
-  madge: madge . --circular
   predocs: mkdir -p docs/
   prepare:husky: husky install
   pretest: npm-run-all pretest:*
   pretest:lint: npm run lint
-  pretest:madge: npm run madge
+  pretest:madge: madge . --circular
 type: module
