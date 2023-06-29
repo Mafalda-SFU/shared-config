@@ -13,7 +13,7 @@ scripts:
   docs:madge: madge . --image madge.svg
   docs:readme: cp README.md madge.svg docs/
   lint: npm-run-all lint:*
-  lint:cspell: cspell --dot --gitignore "**"
+  lint:cspell: cspell
   lint:eslint: eslint .
   predocs: mkdir -p docs/
   prepare:husky: husky install

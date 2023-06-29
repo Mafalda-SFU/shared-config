@@ -8,7 +8,10 @@
       "path": ".cspell.txt"
     }
   ],
+  "enableGlobDot": true,
+  "files": ["**"],
   "ignorePaths": [".git/", "node_modules/", "*.[jt]s?(x)", "*.svg"],
+  "useGitignore": true,
   "version": "0.2",
   "words": [
     "graphviz",
