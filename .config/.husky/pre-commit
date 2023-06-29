@@ -4,4 +4,4 @@
 npm test
 npm run docs
 git add docs/ madge.svg
-git commit --amend --no-edit
+git commit --amend --no-edit --no-verify
