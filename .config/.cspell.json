@@ -11,12 +11,13 @@
   "enableGlobDot": true,
   "files": ["**"],
   "ignorePaths": [".git/", "node_modules/", "*.[jt]s?(x)", "*.svg"],
-  "useGitignore": true,
-  "version": "0.2",
-  "words": [
+  "ignoreWords": [
+    "exuanbo",
     "graphviz",
     "cpina",
     "cyclomatic",
     "Schneegans"
-  ]
+  ],
+  "useGitignore": true,
+  "version": "0.2"
 }
