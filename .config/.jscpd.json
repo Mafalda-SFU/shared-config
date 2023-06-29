@@ -1,0 +1,6 @@
+{
+  "gitignore": true,
+  "ignore": ["coverage", "node_modules"],
+  "ignore-pattern": "import.*from\\s*'.*'",
+  "noSymlinks": true
+}

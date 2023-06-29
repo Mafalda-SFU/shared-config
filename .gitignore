@@ -83,6 +83,7 @@
 /.eslint*
 /.gitignore
 /.husky/
+/.jscpd.*
 /.npmignore
 /.vscode/
 bin/

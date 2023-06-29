@@ -16,7 +16,7 @@ scripts:
   lint: npm-run-all lint:*
   lint:cspell: cspell
   lint:eslint: eslint .
-  lint:jscpd: jscpd --ignore coverage,node_modules .
+  lint:jscpd: jscpd .
   predocs: mkdir -p docs/
   prepare:husky: husky install
   pretest: npm-run-all pretest:*
