@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "standard-shared-config build",
-    "docs": "cp README.md docs/ && jsdoc2md *.js > docs/API.md",
+    "docs": "npm-run-all docs:*",
+    "docs:readme": "cp README.md docs/",
     "lint": "eslint .",
     "predocs": "mkdir -p docs/",
     "prepare": "npm-run-all prepare:*",
