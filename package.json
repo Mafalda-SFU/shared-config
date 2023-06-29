@@ -26,8 +26,8 @@
   "scripts": {
     "build": "standard-shared-config build",
     "docs": "npm-run-all docs:*",
-    "docs:madge": "madge . --image docs/madge.svg",
-    "docs:readme": "cp README.md docs/",
+    "docs:madge": "madge . --image madge.svg",
+    "docs:readme": "cp README.md madge.svg docs/",
     "lint": "npm-run-all lint:*",
     "lint:cspell": "cspell",
     "lint:eslint": "eslint .",
