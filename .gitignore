@@ -82,6 +82,7 @@
 /.eslintrc
 /.husky
 /.npmignore
+/.vscode/
 bin/
 bower_components
 build/Release

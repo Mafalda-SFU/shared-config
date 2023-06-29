@@ -132,4 +132,5 @@ dist
 # Mafalda SFU shared config
 /.husky
 /.eslintrc
+/.vscode/
 /.npmignore
