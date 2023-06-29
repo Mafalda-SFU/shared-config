@@ -107,7 +107,7 @@ jobs:
       - name: Run linter
         run: npm run lint -s -- --format json > lint.json
 
-      # Bagde
+      # Badge
       - name: Export lint warnings
         run: |
           export TOTAL=$( jq '[.[].warningCount] | add' < lint.json )
