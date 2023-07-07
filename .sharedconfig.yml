@@ -6,6 +6,8 @@ dependencies:
   - jscpd: ^3.5.9
   - jsdoc-to-markdown: ^8.0.0
   - madge: ^6.1.0
+  - textlint: ^13.3.3
+  - textlint-rule-editorconfig: Mafalda-SFU/textlint-rule-editorconfig
 mergeRules:
   .gitignore:
   .npmignore:
@@ -17,6 +19,8 @@ scripts:
   lint:cspell: cspell
   lint:eslint: eslint .
   lint:jscpd: jscpd .
+  ## Docs linters
+  lint:text: textlint .
   predocs: mkdir -p docs/
   prepare:husky: husky install
   pretest: npm-run-all pretest:*
