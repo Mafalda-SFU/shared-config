@@ -11,19 +11,37 @@ dependencies:
 mergeRules:
   .gitignore:
   .npmignore:
+# https://eslint.org/docs/latest/contribute/package-json-conventions
 scripts:
-  docs: npm-run-all docs:*
+  # Project development setup
+  prepare: run-s prepare:*
   docs:madge: madge . --image madge.svg
   docs:readme: cp README.md madge.svg docs/
   lint: npm-run-all lint:*
   lint:cspell: cspell
   lint:eslint: eslint .
   lint:jscpd: jscpd .
+  # Linters
+  lint: run-s 'lint:!(fix)'
+  lint:fix: run-s lint:fix:*
+
   ## Docs linters
+  lint:docs: run-s lint:docs:*
   lint:text: textlint .
+
+  lint:fix:text: npm run lint:text -- --fix
+
+  # Build for release
+  build: run-s build:*
+
+  # Docs generation
   predocs: mkdir -p docs/
+  docs: run-s docs:*
   prepare:husky: husky install
   pretest: npm-run-all pretest:*
   pretest:lint: npm run lint
   pretest:madge: madge . --circular
+
+  # Release
+  release: run-s release:*
 type: module
