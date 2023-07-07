@@ -35,6 +35,7 @@
     "predocs": "mkdir -p docs/",
     "prepare": "npm-run-all prepare:*",
     "prepare:build": "npm run build",
+    "prepare:fetch-gitignore": "curl https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore --output .gitignore && echo bin/ >> .gitignore && echo lib/ >> .gitignore",
     "prepare:config": "chmod +x bin/* && bin/shared-config.js",
     "prepare:cspell-words": "cspell --unique --words-only \"**\" | sort --ignore-case >> .config/.cspell.txt",
     "prepare:husky": "husky install",
