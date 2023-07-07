@@ -36,6 +36,7 @@
     "prepare": "npm-run-all prepare:*",
     "prepare:build": "npm run build",
     "prepare:config": "chmod +x bin/* && bin/shared-config.js",
+    "prepare:cspell-words": "cspell --unique --words-only \"**\" | sort --ignore-case >> .config/.cspell.txt",
     "prepare:husky": "husky install",
     "pretest": "npm-run-all pretest:*",
     "pretest:lint": "npm run lint",
