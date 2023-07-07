@@ -9,8 +9,10 @@ dependencies:
   - textlint: ^13.3.3
   - textlint-rule-editorconfig: Mafalda-SFU/textlint-rule-editorconfig
 mergeRules:
+  .cspell.txt:
   .gitignore:
   .npmignore:
+
 # https://eslint.org/docs/latest/contribute/package-json-conventions
 scripts:
   # Project development setup
@@ -18,7 +20,6 @@ scripts:
   docs:madge: madge . --image madge.svg
   docs:readme: cp README.md madge.svg docs/
   lint: npm-run-all lint:*
-  lint:cspell: cspell
   lint:eslint: eslint .
   lint:jscpd: jscpd .
   # Linters
@@ -28,6 +29,7 @@ scripts:
   ## Docs linters
   lint:docs: run-s lint:docs:*
   lint:docs:readme: standard-readme
+  lint:docs:spell-checker: cspell
   lint:text: textlint .
 
   lint:fix:text: npm run lint:text -- --fix
