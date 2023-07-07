@@ -33,6 +33,8 @@
     "lint:cspell": "cspell",
     "lint:eslint": "eslint .",
     "lint:jscpd": "jscpd .",
+    "lint:docs": "run-s lint:docs:*",
+    "lint:docs:readme": "standard-readme",
     "lint:fix": "run-s lint:fix:*",
     "lint:text": "textlint .",
     "predocs": "mkdir -p docs/",
@@ -46,6 +48,9 @@
     "pretest:madge": "madge . --circular",
     "prepare:install-git-hooks": "husky install",
     "test": "node --experimental-test-coverage --test"
+  },
+  "dependencies": {
+    "standard-readme": "^2.0.4"
   },
   "devDependencies": {
     "@mafalda-sfu/eslint-config": "^0.3.0",

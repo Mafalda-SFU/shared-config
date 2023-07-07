@@ -27,6 +27,7 @@ scripts:
 
   ## Docs linters
   lint:docs: run-s lint:docs:*
+  lint:docs:readme: standard-readme
   lint:text: textlint .
 
   lint:fix:text: npm run lint:text -- --fix
