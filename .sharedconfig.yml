@@ -18,15 +18,14 @@ scripts:
   # Project development setup
   prepare: run-s prepare:*
   docs:madge: madge . --image madge.svg
-  docs:readme: cp README.md madge.svg docs/
-  lint: npm-run-all lint:*
-  lint:jscpd: jscpd .
   # Linters
   lint: run-s 'lint:!(fix)'
   lint:fix: run-s lint:fix:*
 
   ## Code linters
   lint:code: run-s lint:code:*
+  lint:code:circular-dependencies: madge . --circular
+  lint:code:duplicated-code: jscpd .
   lint:code:static-analysis: eslint .
 
   lint:fix:code: run-s lint:fix:code:*
@@ -46,10 +45,10 @@ scripts:
   # Docs generation
   predocs: mkdir -p docs/
   docs: run-s docs:*
+  docs:draw-dependencies-graph: madge . --image docs/madge.svg
   prepare:husky: husky install
   pretest: npm-run-all pretest:*
   pretest:lint: npm run lint
-  pretest:madge: madge . --circular
 
   # Release
   release: run-s release:*
