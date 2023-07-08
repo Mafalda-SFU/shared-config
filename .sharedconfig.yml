@@ -17,6 +17,8 @@ mergeRules:
 scripts:
   # Project development setup
   prepare: run-s prepare:*
+  prepare:build: npm run build
+  prepare:install-git-hooks: husky install
   docs:madge: madge . --image madge.svg
   # Linters
   lint: run-s 'lint:!(fix)'
@@ -46,7 +48,6 @@ scripts:
   predocs: mkdir -p docs/
   docs: run-s docs:*
   docs:draw-dependencies-graph: madge . --image docs/madge.svg
-  prepare:husky: husky install
   pretest: npm-run-all pretest:*
   pretest:lint: npm run lint
 
